@@ -1,20 +1,47 @@
 spring:
-  application:
-    name: springofseoul
-
   datasource:
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
-    jpa:
-      hibernate:
-        ddl-auto: update   # 개발용: create, update, validate 등 선택
-      properties:
-        hibernate:
-          format_sql: true
-      show-sql: true
+    url: jdbc:mysql://localhost:3306/shopdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul&characterEncoding=UTF-8&useUnicode=true
+    username: shopuser
+    password: shop1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
-    h2:
-      console:
-        enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+
+
+#spring:
+#  application:
+#    name: springofseoul
+#
+#  datasource:
+##    url: jdbc:h2:mem:testdb
+##    driver-class-name: org.h2.Driver
+##    username: sa
+##    password:
+##    jpa:
+##      hibernate:
+##        ddl-auto: update   # 개발용: create, update, validate 등 선택
+##      properties:
+##        hibernate:
+##          format_sql: true
+##      show-sql: true
+#    url: jdbc:mysql://localhost:3306/shopdb?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+#    username: shopuser
+#    password: shop1234
+#    jpa:
+#      hibernate:
+#        ddl-auto: update
+#      show-sql: true
+#
+#    h2:
+#      console:
+#        enabled: true
