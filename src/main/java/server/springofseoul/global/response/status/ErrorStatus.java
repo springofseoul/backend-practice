@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import server.springofseoul.global.response.code.BaseErrorCode;
+import server.springofseoul.global.response.dto.ErrorReasonDto;
 
 @Getter
 @RequiredArgsConstructor
@@ -19,6 +20,25 @@ public enum ErrorStatus implements BaseErrorCode {
     private final HttpStatus httpStatus;
     private final String code;
     private final String message;
+
+    @Override
+    public ErrorReasonDto getReason() {
+        return ErrorReasonDto.builder()
+                .isSuccess(false)
+                .code(code)
+                .message(message)
+                .build();
+    }
+
+    @Override
+    public ErrorReasonDto getReasonHttpStatus() {
+        return ErrorReasonDto.builder()
+                .isSuccess(false)
+                .httpStatus(httpStatus)
+                .code(code)
+                .message(message)
+                .build();
+    }
 
     @Override
     public boolean isSuccess() {
