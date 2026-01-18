@@ -9,7 +9,8 @@ import server.springofseoul.global.response.dto.ErrorReasonDto;
 @Getter
 @RequiredArgsConstructor
 public enum ProductErrorStatus implements BaseErrorCode {
-    _INVALID_PRODUCT(HttpStatus.BAD_REQUEST, "PRODUCT-001", "유효하지 않은 상품입니다.");
+    _INVALID_PRODUCT(HttpStatus.BAD_REQUEST, "PRODUCT-001", "유효하지 않은 상품입니다."),
+    _ZERO_QUANTITY(HttpStatus.BAD_REQUEST, "PRODUCT-002", "재고가 부족합니다.");
 
     private final HttpStatus httpStatus;
     private final String code;

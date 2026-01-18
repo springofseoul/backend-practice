@@ -10,6 +10,8 @@ import lombok.AllArgsConstructor;
 // Auditing 적용 (자동 관리)
 // JPA가 엔티티 생명주기 이벤트(저장/수정)를 감지하여 자동으로 시간을 주입함.
 import server.springofseoul.global.dao.BaseTimeEntity;
+import server.springofseoul.global.exception.CustomException;
+import server.springofseoul.item.product.status.ProductErrorStatus;
 
 @Getter
 @Entity     // @Entity 애너테이션은 Product 객체를 JPA가 관리하는 엔티티로 지정
@@ -56,7 +58,7 @@ public class Product extends BaseTimeEntity {
     public void removeStock(int quantity) {
         if (this.stockQuantity < quantity) {
             // 충분한 재고가 없을 경우 예외 처리
-            throw new IllegalArgumentException("재고가 부족합니다.");
+            throw new CustomException(ProductErrorStatus._ZERO_QUANTITY);
         }
         this.stockQuantity -= quantity;
     }

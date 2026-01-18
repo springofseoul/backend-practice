@@ -12,7 +12,6 @@ import server.springofseoul.item.product.domain.entity.Product;
 import server.springofseoul.item.product.api.request.ProductRequestDto;
 import server.springofseoul.item.product.domain.repository.ProductRepository;
 import server.springofseoul.item.product.status.ProductErrorStatus;
-import server.springofseoul.global.exception.CustomException;
 
 @Service
 @RequiredArgsConstructor
@@ -40,12 +39,14 @@ public class ProductService {
     }
 
     // READ: 단건 조회
+    @Transactional(readOnly = true)
     public Product getProduct(Long productid) {
         return productRepository.findById(productid)
                 .orElseThrow(() -> new CustomException(ProductErrorStatus._INVALID_PRODUCT));
     }
 
     // READ: 전체 조회
+    @Transactional(readOnly = true)
     public List<Product> getProducts() {
         return productRepository.findAll();
     }
